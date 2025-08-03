@@ -12,6 +12,7 @@ public class RewindButton : MonoBehaviour
 
     private RectTransform fgRect;
     private RectTransform bgRect;
+    private bool isRewinding = false;
 
     void Start()
     {
@@ -23,21 +24,25 @@ public class RewindButton : MonoBehaviour
 
     void Update()
     {
-        if (Keyboard.current.rKey.wasPressedThisFrame)
+        if (Keyboard.current.rKey.wasPressedThisFrame && !isRewinding)
         {
+            isRewinding = true;
             RewindClock();
         }
-        else
+        else if (!Keyboard.current.rKey.isPressed && isRewinding)
         {
+            isRewinding = false;
             StartClock();
         }
+
     }
 
     void RotateHands(bool rotateClockwise)
     {
+        LeanTween.cancel(fgRect);
         float rotationAngle = rotateClockwise ? -360f : 360f;
 
-        LeanTween.rotateAroundLocal(fgRect.gameObject, Vector3.forward, rotationAngle, rotationDuration)
+        LeanTween.rotateAroundLocal(fgRect, Vector3.forward, rotationAngle, rotationDuration)
                  .setRepeat(-1) // Loop forever
                  .setEase(LeanTweenType.linear);
     }
@@ -58,6 +63,6 @@ public class RewindButton : MonoBehaviour
     {
         RotateHands(false);
         LeanTween.cancel(bgRect);
-        LeanTween.scale(bgRect, Vector3.one, 0.2f); 
+        LeanTween.scale(bgRect, Vector3.one, 0.2f);
     }
 }
