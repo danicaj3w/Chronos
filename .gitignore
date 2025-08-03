@@ -101,3 +101,4 @@ InitTestScene*.unity*
 # Device Specific Ignores
 .vscode/
 desktop.ini
+.DS_Store
