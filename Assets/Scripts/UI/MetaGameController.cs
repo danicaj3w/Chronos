@@ -11,10 +11,10 @@ namespace Platformer.UI
     /// </summary>
     public class MetaGameController : MonoBehaviour
     {
-        /// <summary>
-        /// The main UI object which used for the menu.
-        /// </summary>
-        public MainUIController mainMenu;
+        // /// <summary>
+        // /// The main UI object which used for the menu.
+        // /// </summary>
+        // public MainUIController mainMenu;
 
         /// <summary>
         /// A list of canvas objects which are used during gameplay (when the main ui is turned off)
